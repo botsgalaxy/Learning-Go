@@ -1,9 +1,25 @@
 package main
 
 import "fmt"
+import "os"
+import "strconv"
+
+func getBalanceFromFile() float64 {
+	data, _ := os.ReadFile("balance.txt")
+	balanceText := string(data)
+	balance, _ := strconv.ParseFloat(balanceText, 64)
+	return balance
+
+}
+
+func writeBalanceToFile(balance float64) {
+	balanceText := fmt.Sprint(balance)
+	os.WriteFile("balance.txt", []byte(balanceText), 0644)
+
+}
 
 func main() {
-	var accountBalance float64 = 1000
+	var accountBalance float64 = getBalanceFromFile()
 
 	fmt.Println("Welcome to Go Bank")
 
@@ -32,6 +48,7 @@ func main() {
 
 			accountBalance += depositAmount
 			fmt.Println("Balance Updated! New amount:", accountBalance)
+			writeBalanceToFile(accountBalance)
 
 		} else if choice == 3 {
 			var withdrawalAmount float64
@@ -49,6 +66,7 @@ func main() {
 
 			accountBalance -= withdrawalAmount
 			fmt.Println("Balance Updated! New Balance: ", accountBalance)
+			writeBalanceToFile(accountBalance)
 
 		} else {
 			fmt.Println("Goodbye!")
