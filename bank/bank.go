@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	var accountBalance = 1000
+	var accountBalance float64 = 1000
 
 	fmt.Println("Welcome to Go Bank")
 	fmt.Println("What do you want to do?")
@@ -22,15 +22,30 @@ func main() {
 		var depositAmount float64
 		fmt.Print("Your deposit: ")
 		fmt.Scan(&depositAmount)
-		accountBalance += int(depositAmount)
+		if depositAmount <= 0 {
+			fmt.Println("Invalid amount. Must be greater than 0")
+			return
+		}
+
+		accountBalance += depositAmount
 		fmt.Println("Balance Updated! New amount:", accountBalance)
 
 	} else if choice == 3 {
-		var WithdrawalAmount float64
+		var withdrawalAmount float64
 		fmt.Print("Withdrawal amount: ")
-		fmt.Scan(&WithdrawalAmount)
-		accountBalance -= int(WithdrawalAmount)
-		fmt.Println("Balance Updated! New Balance: ", accountBalance)
+		fmt.Scan(&withdrawalAmount)
+		if withdrawalAmount <= 0 {
+			fmt.Println("Invalid amount. Must be greater than 0")
+			return
+		}
+
+		if withdrawalAmount > accountBalance {
+			fmt.Println("Invalid amount! You can't withdraw more than you have")
+			return 
+		}
+
+		accountBalance -= withdrawalAmount
+			fmt.Println("Balance Updated! New Balance: ", accountBalance)
 
 	} else {
 		fmt.Println("Goodbye!")
