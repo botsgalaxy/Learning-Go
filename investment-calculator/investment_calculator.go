@@ -1,6 +1,6 @@
 package main
 
-import ( 
+import (
 	"fmt"
 	"math"
 )
@@ -20,12 +20,9 @@ func main() {
 	fmt.Print("Enter Years: ")
 	fmt.Scan(&years)
 
-
-
-	futureValue := investmentAmount * math.Pow(1+expectedReturnRate/100,years)
-	futureRealValue := futureValue / math.Pow(1+inflationRate/100,years)
-	fmt.Println("Future Value:",futureValue)
+	futureValue := investmentAmount * math.Pow(1+expectedReturnRate/100, years)
+	futureRealValue := futureValue / math.Pow(1+inflationRate/100, years)
+	fmt.Println("Future Value:", futureValue)
 	fmt.Println("Future Real Value:", futureRealValue)
-
 
 }
