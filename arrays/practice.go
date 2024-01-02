@@ -56,5 +56,15 @@ func main() {
 	fmt.Println(products)
 
 
+	fruits := []string { "apple","mango","orange"}
+	vegetables := []string { "carrot","cabbage","potato"}
+
+	foods :=[]string {}
+	foods = append(foods, fruits...)
+	foods = append(foods, vegetables...)
+	fmt.Println(foods)
+
+
+
 
 }
